@@ -1,0 +1,4 @@
+﻿  TextureManager.cpp
+C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(99,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\texture\TextureManager.cpp(185,19): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+  GoodProj.vcxproj -> C:\Users\molsh\source\repos\GoodProj\x64\Debug\GoodProj.exe
