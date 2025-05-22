@@ -1,6 +1,10 @@
-﻿  InputManager.cpp
+﻿  TextureManager.cpp
+C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\texture\TextureManager.cpp(11,81): warning C4267: аргумент: преобразование из "size_t" в "UINT"; возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\texture\TextureManager.cpp(189,19): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
   Создание кода
-  Compiler switch has changed, fall back to full compilation.
-  All 1473 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  4 of 1575 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    9 functions had inline decision re-evaluated but remain unchanged
   Создание кода завершено
   GoodProj.vcxproj -> C:\Users\molsh\source\repos\GoodProj\x64\Release\GoodProj.exe

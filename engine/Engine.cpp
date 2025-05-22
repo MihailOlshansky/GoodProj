@@ -7,6 +7,7 @@ void UnitBase::setEngine(Engine* eng) {
 
 Engine::Engine() {
 	win = new Win(this);
+	input = new Input(this);
 	render = new Render(this);
 }
 
@@ -42,11 +43,14 @@ void Engine::run() {
 
 // update every unit
 void Engine::frame() {
+	input->update();
+
 	for (auto unit : units) {
 		unit->update();
 	}
 
 	render->doRender();
+	input->Mdz = 0;
 }
 
 void Engine::resize(UINT width, UINT height) {
@@ -59,5 +63,6 @@ Engine::~Engine() {
 	}
 	units.clear();
 	delete render;
+	delete input;
 	delete win;
 }

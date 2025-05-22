@@ -39,7 +39,7 @@ private:
 	RenderTarget* HDRRT = nullptr;
 	Texture* HDRTex = nullptr;
 
-	Texture* avgBrightness = nullptr;
+	float curAvgBrightness = 1;
 
 	std::vector<PassBase*> passes;
 
@@ -75,8 +75,8 @@ public:
 	RenderTarget* getHDRTarget() { return HDRRT; }
 	DepthStencil* getDepthBufferTarget() { return depthBufferDS; }
 
-	Texture* getAvgBrigtness() { return avgBrightness; }
-	void setAvgBrightness(Texture* tex) { avgBrightness = tex; }
+	float getCurAvgBrigtness() { return curAvgBrightness; }
+	void setCurAvgBrightness(float val) { curAvgBrightness = val; }
 
 	ConstantBuffer<PerFrameData>* perFrameCB;
 	~Render();

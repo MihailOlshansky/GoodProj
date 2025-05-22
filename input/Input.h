@@ -2,25 +2,23 @@
 #include "Dev.h"
 
 class Input {
+private:
+    Engine* engine;
 public:
+    static const int KEYBOARD_SIZE = 256;
+
     BYTE
-        Keys[256],           /* Current key states */
-        OldKeys[256],        /* Previous frame key states */
-        KeysClick[256];      /* Click key flags */
+        keys[KEYBOARD_SIZE],           /* Current key states */
+        oldKeys[KEYBOARD_SIZE],        /* Previous frame key states */
+        keysClick[KEYBOARD_SIZE];      /* Click key flags */
     INT
         Mx, My,              /* Mouse cursor position */
         Mz,                  /* Mouse wheel state*/
         Mdx, Mdy, Mdz;       /* Delta values of mouse axes */
 
-    Input() = default;
+    Input(Engine * eng);
 
-    void Response(HWND hWnd);
-
-    void UpdateWheel(int newZ)
-    {
-        Mdz = newZ - Mz;
-        Mz = newZ;
-    }
+    void update();
 
     ~Input() = default;
 };

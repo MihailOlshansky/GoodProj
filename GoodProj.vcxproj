@@ -144,7 +144,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="input\Input.cpp" />
-    <ClCompile Include="input\InputManager.cpp" />
     <ClCompile Include="render\geometry\GeometryManager.cpp" />
     <ClCompile Include="render\material\MaterialManager.cpp" />
     <ClCompile Include="render\mesh\MeshManager.cpp" />
@@ -159,7 +158,6 @@
     <ClCompile Include="render\Render.cpp" />
     <ClInclude Include="engine\Engine.h" />
     <ClInclude Include="input\Input.h" />
-    <ClInclude Include="input\InputManager.h" />
     <ClInclude Include="render\camera\Camera.h" />
     <ClInclude Include="render\constantBuffer\ConstantBuffer.h" />
     <ClInclude Include="render\constantBuffer\ConstantBufferImpl.hpp" />
@@ -178,6 +176,7 @@
     <ClInclude Include="render\texture\stb_image.h" />
     <ClInclude Include="render\texture\TextureManager.h" />
     <ClInclude Include="shaders\shared.h" />
+    <ClInclude Include="units\CameraInputUnit.h" />
     <ClInclude Include="units\Cubes.h" />
     <ClInclude Include="units\TestUnit.h" />
     <ClInclude Include="units\UnitBase.h" />
@@ -188,6 +187,7 @@
     <ClCompile Include="GoodProj.cpp" />
     <ClCompile Include="render\texture\stb_image.cpp" />
     <ClCompile Include="render\texture\TextureManager.cpp" />
+    <ClCompile Include="units\CameraInputUnit.cpp" />
     <ClCompile Include="units\Cubes.cpp" />
     <ClCompile Include="units\TestUnit.cpp" />
     <ClCompile Include="win\Win.cpp" />

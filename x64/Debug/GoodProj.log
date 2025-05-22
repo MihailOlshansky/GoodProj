@@ -1,4 +1,10 @@
-﻿  TextureManager.cpp
-C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(99,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-C:\Users\molsh\source\repos\GoodProj\render\texture\TextureManager.cpp(185,19): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+﻿  Render.cpp
+C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\Render.cpp(131,43): warning C4267: =: преобразование из "size_t" в "UINT"; возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\Render.cpp(132,45): warning C4267: =: преобразование из "size_t" в "UINT"; возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\Render.cpp(199,80): warning C4267: аргумент: преобразование из "size_t" в "UINT"; возможна потеря данных
+  AvgBrightness.cpp
+C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\passes\AvgBrightness.cpp(47,21): warning C4244: инициализация: преобразование "double" в "uint32_t", возможна потеря данных
+  Создание кода...
   GoodProj.vcxproj -> C:\Users\molsh\source\repos\GoodProj\x64\Debug\GoodProj.exe

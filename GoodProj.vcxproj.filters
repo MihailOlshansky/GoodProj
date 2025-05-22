@@ -130,8 +130,8 @@
     <ClInclude Include="render\passes\ToneMapping.h">
       <Filter>Исходные файлы\render\passes</Filter>
     </ClInclude>
-    <ClInclude Include="input\InputManager.h">
-      <Filter>Исходные файлы\input</Filter>
+    <ClInclude Include="units\CameraInputUnit.h">
+      <Filter>Исходные файлы\units</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -192,8 +192,8 @@
     <ClCompile Include="render\passes\ToneMapping.cpp">
       <Filter>Исходные файлы\render\passes</Filter>
     </ClCompile>
-    <ClCompile Include="input\InputManager.cpp">
-      <Filter>Исходные файлы\input</Filter>
+    <ClCompile Include="units\CameraInputUnit.cpp">
+      <Filter>Исходные файлы\units</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

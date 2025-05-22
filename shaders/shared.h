@@ -30,9 +30,9 @@ using uint4 = DirectX::XMUINT4;
 #define PER_FRAME_CB_SLOT SHADER_CB_SLOT(0)
 #define PER_MESH_CB_SLOT SHADER_CB_SLOT(1)
 #define PER_MATERIAL_CB_SLOT SHADER_CB_SLOT(2)
+#define TONEMAPPING_CB_SLOT SHADER_CB_SLOT(3)
 
 #define TEXTURE_COLOR_SRV_SLOT SHADER_SRV_SLOT(0)
-#define TEXTURE_AVG_BRIGHTNESS_SLOT SHADER_SRV_SLOT(1)
 
 #define LINEAR_SAMPLER_SLOT SHADER_SAMPLER_SLOT(0)
 #define NEAREST_SAMPLER_SLOT SHADER_SAMPLER_SLOT(1)
@@ -62,4 +62,10 @@ struct PerFrameData
 struct PerMeshData
 {
 	float4x4 transform;
+};
+
+struct ToneMappingCB
+{
+	float avgBrightnessLog;
+	uint _padding[3];
 };

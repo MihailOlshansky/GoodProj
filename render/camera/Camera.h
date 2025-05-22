@@ -22,6 +22,9 @@ private:
 
 	DirectX::XMFLOAT4X4 viewProj;
 
+	float MaxUpAngle = 89.0f;
+	float currUpAngle = 0.0f;
+
 public:
 	Camera() {
 
@@ -30,6 +33,25 @@ public:
 	void setPosition(DirectX::XMFLOAT3 pos) {
 		position = pos;
 		viewDirty = true;
+	}
+
+	void reset() {
+		fov = 90.0f;
+		nearPlane = 0.1f;
+		farPlane = 1000.0f;
+
+		projection = {};
+		projectionDirty = true;
+
+		position = { 0, 0, 0 };
+		direction = { 0, 0, 1 };
+		up = { 0, 1, 0 };
+
+		view = {};
+		viewDirty = true;
+
+		viewProj = {};
+		currUpAngle = 0.0f;
 	}
 
 	void translate(DirectX::XMFLOAT3 pos) {
@@ -48,6 +70,14 @@ public:
 	}
 
 	void rotateAroundRight(float angleInDegrees) {
+		if (currUpAngle + angleInDegrees < -MaxUpAngle) {
+			angleInDegrees = -MaxUpAngle - currUpAngle;
+		}
+		else if (currUpAngle + angleInDegrees > MaxUpAngle) {
+			angleInDegrees = MaxUpAngle - currUpAngle;
+		}
+		currUpAngle += angleInDegrees;
+
 		DirectX::XMVECTOR right = DirectX::XMVector3Cross(DirectX::XMLoadFloat3(&up), DirectX::XMLoadFloat3(&direction));
 		DirectX::XMMATRIX rotation = DirectX::XMMatrixRotationAxis(right, angleInDegrees * DirectX::XM_PI / 180.0f);
 		DirectX::XMVECTOR newDir = DirectX::XMVector3Transform(DirectX::XMLoadFloat3(&direction), rotation);
@@ -104,5 +134,8 @@ public:
 		
 		return viewProj;
 	}
+
+	DirectX::XMFLOAT3 getPosition() { return position; }
+	DirectX::XMFLOAT3 getDirection() { return direction; }
 
 };

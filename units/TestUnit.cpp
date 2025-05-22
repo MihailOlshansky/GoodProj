@@ -11,6 +11,7 @@ void TestUnit::init() {
 		size_t size;
 		mbstowcs_s(&size, &dest[0], 2, source, 2);
 		MessageBox(NULL, dest.c_str(), L"Button pressed", MB_OK | MB_ICONERROR);
+		printf("Button pressed %s", dest);
 		});
 }
 

@@ -5,7 +5,7 @@ class ToneMappingPass : public PassBase {
 private:
 	Shader* toneMappingVertexShader;
 	Shader* toneMappingPixelShader;
-
+	ConstantBuffer<ToneMappingCB>* tonemapCB;
 public:
 	ToneMappingPass();
 

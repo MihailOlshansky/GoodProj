@@ -8,11 +8,17 @@ ToneMappingPass::ToneMappingPass() {
 void ToneMappingPass::init() {
 	toneMappingVertexShader = render->getShaderManager()->getShader("shaders/ToneMappingPass.hlsl", Shader::Stage::Vertex);
 	toneMappingPixelShader = render->getShaderManager()->getShader("shaders/ToneMappingPass.hlsl", Shader::Stage::Pixel);
+
+	tonemapCB = new ConstantBuffer<ToneMappingCB>(render);
 }
 
 void ToneMappingPass::process() {
 	render->BeginEvent(L"ToneMappingPass");
 	
+	// update CB data
+	auto& cb = tonemapCB->getData();
+	cb.avgBrightnessLog = render->getCurAvgBrigtness();
+
 	// set target 
 	render->getRenderTargetManager()->reset();
 	render->getBackBufferTarget()->setActive();
@@ -26,17 +32,19 @@ void ToneMappingPass::process() {
 	render->getTextureManager()->setSamplers(toneMappingVertexShader);
 	render->getTextureManager()->setSamplers(toneMappingPixelShader);
 
+	// set cb
+	tonemapCB->setActive(toneMappingPixelShader, TONEMAPPING_CB_SLOT);
+
 	// set prev tex
 	render->getHDRTexture()->setActive(toneMappingPixelShader, TEXTURE_COLOR_SRV_SLOT);
-	render->getAvgBrigtness()->setActive(toneMappingPixelShader, TEXTURE_AVG_BRIGHTNESS_SLOT);
 
 	// run shader
 	render->getD3DDeviceContext()->Draw(6, 0);
-
 
 	render->EndEvent();
 }
 
 ToneMappingPass::~ToneMappingPass() {
+	delete tonemapCB;
 }
 

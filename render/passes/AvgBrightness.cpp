@@ -13,11 +13,31 @@ void AvgBrightnessPass::init() {
 	copyPixelShader = render->getShaderManager()->getShader("shaders/CopyAvgBrightnessPass.hlsl", Shader::Stage::Pixel);
 
 
+	TextureDescriptor texDesc = {};
+	texDesc.mips = 1;
+	texDesc.genMipMaps = false;
+	texDesc.format = DXGI_FORMAT_R32_FLOAT;
+	texDesc.isRenderTarget = true;
+	texDesc.isDepthTexture = false;
+	texDesc.isReadback = false;
+	texDesc.pixels = nullptr;
+
 	for (int i = 0; i < 10; i++)
 	{
-		TempMonoTextures[i] = render->getTextureManager()->addTexture(1 << i, 1 << i, std::string("Avg Brighness tex size ") + std::to_string(1 << i), 1, false, DXGI_FORMAT_R32_FLOAT, true, false, nullptr);
+		texDesc.name = std::string("Avg Brighness tex size ") + std::to_string(1 << i);
+		texDesc.w = 1 << i;
+		texDesc.h = 1 << i;
+		TempMonoTextures[i] = render->getTextureManager()->addTexture(texDesc);
 		TempMonoTargets[i] = render->getRenderTargetManager()->addRenderTarget(TempMonoTextures[i]);
 	}
+
+	texDesc.name = "Avg Brightness Readback texture";
+	texDesc.w = 1;
+	texDesc.h = 1;
+	texDesc.isRenderTarget = false;
+	texDesc.isReadback = true;
+
+	avgBrightnessTex = render->getTextureManager()->addTexture(texDesc);
 }
 
 void AvgBrightnessPass::process() {
@@ -73,13 +93,19 @@ void AvgBrightnessPass::process() {
 
 		// run shader
 		render->getD3DDeviceContext()->Draw(6, 0);
+
 		render->EndEvent();
 	}
 	render->EndEvent();
 
+	render->getTextureManager()->copyTexture(avgBrightnessTex, TempMonoTextures[0]);
+
 	render->EndEvent();
 
-	render->setAvgBrightness(TempMonoTextures[0]);
+	auto pixels = avgBrightnessTex->getPixels();
+	float* pixelsAsFloats = reinterpret_cast<float*>(pixels.data());
+
+	render->setCurAvgBrightness(pixelsAsFloats[0]);
 }
 
 AvgBrightnessPass::~AvgBrightnessPass() {

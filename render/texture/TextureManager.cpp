@@ -71,33 +71,34 @@ void TextureManager::setSamplers(Shader* shader) {
     }
 }
 
-Texture* TextureManager::addTexture(int w, int h, std::string name, int mips, bool genMipMaps, DXGI_FORMAT format, bool isRenderTarget, bool isDepthTexture, uint8_t* pixels) {
+Texture* TextureManager::addTexture(TextureDescriptor texDesc) {
     Texture* texture = new Texture(render);
-    texture->w = w;
-    texture->h = h;
-    texture->name = name;
-    texture->mips = mips;
-    texture->format = format;
-    texture->isRenderTarget = isRenderTarget;
-    texture->isDepthStencil = isDepthTexture;
+    texture->w = texDesc.w;
+    texture->h = texDesc.h;
+    texture->name = texDesc.name;
+    texture->mips = texDesc.mips;
+    texture->format = texDesc.format;
+    texture->isRenderTarget = texDesc.isRenderTarget;
+    texture->isDepthStencil = texDesc.isDepthTexture;
+    texture->isReadback = texDesc.isReadback;
     
     D3D11_TEXTURE2D_DESC desc;
-    desc.Width = w;
-    desc.Height = h;
-    desc.MipLevels = mips;
+    desc.Width = texDesc.w;
+    desc.Height = texDesc.h;
+    desc.MipLevels = texDesc.mips;
     desc.ArraySize = 1;
-    desc.Format = format;
+    desc.Format = texDesc.format;
     desc.SampleDesc.Count = 1;
     desc.SampleDesc.Quality = 0;
-    desc.Usage = D3D11_USAGE_DEFAULT;
-    desc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
-    if (isRenderTarget) 
+    desc.Usage = texDesc.isReadback ? D3D11_USAGE_STAGING : D3D11_USAGE_DEFAULT;
+    desc.BindFlags = texDesc.isReadback ? 0 : D3D11_BIND_SHADER_RESOURCE;
+    if (texDesc.isRenderTarget)
         desc.BindFlags = desc.BindFlags | D3D11_BIND_RENDER_TARGET;
-    if (isDepthTexture)
+    if (texDesc.isDepthTexture)
         desc.BindFlags = desc.BindFlags | D3D11_BIND_DEPTH_STENCIL;
-    desc.CPUAccessFlags = 0;
+    desc.CPUAccessFlags = texDesc.isReadback ? D3D11_CPU_ACCESS_READ : 0;
     desc.MiscFlags = 0;
-    if (genMipMaps)
+    if (texDesc.genMipMaps)
     {
         desc.BindFlags = desc.BindFlags | D3D11_BIND_SHADER_RESOURCE | D3D11_BIND_RENDER_TARGET;
         desc.MiscFlags = desc.MiscFlags | D3D11_RESOURCE_MISC_GENERATE_MIPS;
@@ -106,22 +107,24 @@ Texture* TextureManager::addTexture(int w, int h, std::string name, int mips, bo
     HRESULT hr = S_OK;
     hr = render->getD3DDevice()->CreateTexture2D(&desc, nullptr, &texture->texture);
     ASSERT(hr == S_OK);
+    if (!texDesc.isReadback)
+    {
+        D3D11_SHADER_RESOURCE_VIEW_DESC srvdesc = {};
+        srvdesc.Format = texDesc.format;
+        if (texDesc.format == DXGI_FORMAT_R32_TYPELESS)
+            srvdesc.Format = DXGI_FORMAT_R32_FLOAT;
+        srvdesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+        srvdesc.Texture2D.MostDetailedMip = 0;
+        srvdesc.Texture2D.MipLevels = texDesc.mips;
 
-    D3D11_SHADER_RESOURCE_VIEW_DESC srvdesc = {};
-    srvdesc.Format = format;
-    if (format == DXGI_FORMAT_R32_TYPELESS)
-        srvdesc.Format = DXGI_FORMAT_R32_FLOAT;
-    srvdesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
-    srvdesc.Texture2D.MostDetailedMip = 0;
-    srvdesc.Texture2D.MipLevels = mips;
+        hr = render->getD3DDevice()->CreateShaderResourceView(texture->texture, &srvdesc, &(texture->srv));
+        ASSERT(hr == S_OK);
+    }
 
-    hr = render->getD3DDevice()->CreateShaderResourceView(texture->texture, &srvdesc, &(texture->srv));
-    ASSERT(hr == S_OK);
-
-    if (pixels)
+    if (texDesc.pixels)
     {
         int pixelSize = 0;
-        switch (format)
+        switch (texDesc.format)
         {
         case DXGI_FORMAT_R8G8B8A8_UNORM:
         case DXGI_FORMAT_R32_FLOAT:
@@ -136,11 +139,11 @@ Texture* TextureManager::addTexture(int w, int h, std::string name, int mips, bo
             break;
         }
         
-        render->getD3DDeviceContext()->UpdateSubresource(texture->texture, 0, nullptr, pixels, w * pixelSize, w * h * pixelSize);
+        render->getD3DDeviceContext()->UpdateSubresource(texture->texture, 0, nullptr, texDesc.pixels, texDesc.w * pixelSize, texDesc.w * texDesc.h * pixelSize);
     }
 
 
-    if (mips > 1 && genMipMaps) {
+    if (texDesc.mips > 1 && texDesc.genMipMaps) {
         render->getD3DDeviceContext()->GenerateMips(texture->srv);
     }
 
@@ -177,6 +180,13 @@ void TextureManager::resizeTexture(int w, int h, Texture* tex)
     ASSERT(hr == S_OK);
 }
 
+void TextureManager::clearSlot(int slot)
+{
+    ID3D11ShaderResourceView* res = nullptr;
+    render->getD3DDeviceContext()->VSSetShaderResources(slot, 1, &res);
+    render->getD3DDeviceContext()->PSSetShaderResources(slot, 1, &res);
+}
+
 Texture* TextureManager::loadTexture(std::string filePath, bool isSrgb, bool genMipMaps) {
     int width = 0;
     int height = 0;
@@ -193,16 +203,19 @@ Texture* TextureManager::loadTexture(std::string filePath, bool isSrgb, bool gen
 
     stbi_image_free(pixels);
 
-    Texture* tex = addTexture(
-        width, 
-        height, 
-        filePath, 
-        numOfMips, 
-        genMipMaps, 
-        isSrgb ? DXGI_FORMAT_R8G8B8A8_UNORM_SRGB : DXGI_FORMAT_R8G8B8A8_UNORM, 
-        false,
-        false,
-        pixelsWithMips);
+    TextureDescriptor texDesc = {};
+    texDesc.name = filePath;
+    texDesc.w = width;
+    texDesc.h = height;
+    texDesc.mips = numOfMips;
+    texDesc.genMipMaps = genMipMaps;
+    texDesc.format = isSrgb ? DXGI_FORMAT_R8G8B8A8_UNORM_SRGB : DXGI_FORMAT_R8G8B8A8_UNORM;
+    texDesc.isRenderTarget = false;
+    texDesc.isDepthTexture = false;
+    texDesc.isReadback = false;
+    texDesc.pixels = pixelsWithMips;
+
+    Texture* tex = addTexture(texDesc);
 
     delete[] pixelsWithMips;
 
@@ -224,6 +237,21 @@ Texture* TextureManager::convertBackbufferToTexture(ID3D11Texture2D* backbuffer)
     tex->texture = backbuffer;
     tex->srv = nullptr;
     return tex;
+}
+
+std::vector<uint8_t> Texture::getPixels() {
+    D3D11_MAPPED_SUBRESOURCE s = {};
+    render->getD3DDeviceContext()->Map(texture, 0, D3D11_MAP_READ, 0, &s);
+    std::vector<uint8_t> res;
+    res.resize(h * s.RowPitch);
+    memcpy(res.data(), s.pData, h * s.RowPitch);
+    render->getD3DDeviceContext()->Unmap(texture, 0);
+    return res;
+}
+
+
+void TextureManager::copyTexture(Texture* dest, Texture* src) {
+    render->getD3DDeviceContext()->CopyResource(dest->texture, src->texture);
 }
 
 

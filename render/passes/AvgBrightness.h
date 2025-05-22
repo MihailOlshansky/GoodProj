@@ -11,6 +11,8 @@ private:
 
 	Texture* TempMonoTextures[10];
 	RenderTarget* TempMonoTargets[10];
+
+	Texture* avgBrightnessTex;
 public:
 	AvgBrightnessPass();
 

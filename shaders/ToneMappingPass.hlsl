@@ -1,6 +1,11 @@
 #include "shaders/shared.h"
+
+cbuffer Tonemapping : register(TONEMAPPING_CB_SLOT)
+{
+	ToneMappingCB passCB;
+}
+
 Texture2D TextureHDR : register(TEXTURE_COLOR_SRV_SLOT);
-Texture2D TextureAvgBrightness : register(TEXTURE_AVG_BRIGHTNESS_SLOT);
 
 SamplerState LinearSampler : register(LINEAR_SAMPLER_SLOT);
 SamplerState NearestSampler : register(NEAREST_SAMPLER_SLOT);
@@ -49,7 +54,7 @@ float4 PSMain(VSOut input) : SV_TARGET{
 	float3 color = TextureHDR.Sample(LinearSampler, input.texCoord).xyz;
 //	return float4(color, 1);
 	
-	float avgBrightness = exp(TextureAvgBrightness.Sample(NearestSampler, float2(0.5, 0.5)).x) - 1;
+	float avgBrightness = exp(passCB.avgBrightnessLog) - 1;
 
 	float keyValue = 1.03 - 2 / (2 + log10(avgBrightness + 1));
 

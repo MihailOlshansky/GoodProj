@@ -37,10 +37,28 @@ void Render::init(size_t w, size_t h) {
         return;
     }
 
-    depthBufferTex = textureManager->addTexture(backBufferTex->getWidth(), backBufferTex->getHeight(), "Depth buffer", 1, false, DXGI_FORMAT_R32_TYPELESS, false, true, nullptr);
+    TextureDescriptor texDesc = {};
+    texDesc.name = "Depth buffer";
+    texDesc.w = backBufferTex->getWidth();
+    texDesc.h = backBufferTex->getHeight();
+    texDesc.mips = 1;
+    texDesc.genMipMaps = false;
+    texDesc.format = DXGI_FORMAT_R32_TYPELESS;
+    texDesc.isRenderTarget = false;
+    texDesc.isDepthTexture = true;
+    texDesc.isReadback = false;
+    texDesc.pixels = nullptr;
+
+    depthBufferTex = textureManager->addTexture(texDesc);
     depthBufferDS = renderTargetManager->addDepthStencil(depthBufferTex);
 
-    HDRTex = textureManager->addTexture(backBufferTex->getWidth(), backBufferTex->getHeight(), "HDR", 1, false, DXGI_FORMAT_R32G32B32A32_FLOAT, true, false, nullptr);
+    texDesc.name = "HDR";
+    texDesc.format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+    texDesc.isRenderTarget = true;
+    texDesc.isDepthTexture = false;
+
+
+    HDRTex = textureManager->addTexture(texDesc);
     HDRRT = renderTargetManager->addRenderTarget(HDRTex);
 
     //passes.push_back(new TestTriangle());
@@ -158,6 +176,8 @@ void Render::doRender() {
     backbufferRT->clear({ 0.0f, 0.0f, 0.0f, 1.0f });
     HDRRT->clear({ 0.0f, 0.0f, 0.0f, 1.0f });
     depthBufferDS->clear(1.0f);
+
+    textureManager->clearSlot(TEXTURE_COLOR_SRV_SLOT);
     
     auto &data = perFrameCB->getData();
     data.viewProj = playerCamera.getVP();
