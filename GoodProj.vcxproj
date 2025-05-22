@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClCompile Include="input\Input.cpp" />
     <ClCompile Include="render\geometry\GeometryManager.cpp" />
+    <ClCompile Include="render\light\LightManager.cpp" />
     <ClCompile Include="render\material\MaterialManager.cpp" />
     <ClCompile Include="render\mesh\MeshManager.cpp" />
     <ClCompile Include="render\passes\AvgBrightness.cpp" />
@@ -162,6 +163,7 @@
     <ClInclude Include="render\constantBuffer\ConstantBuffer.h" />
     <ClInclude Include="render\constantBuffer\ConstantBufferImpl.hpp" />
     <ClInclude Include="render\geometry\GeometryManager.h" />
+    <ClInclude Include="render\light\LightManager.h" />
     <ClInclude Include="render\material\MaterialManager.h" />
     <ClInclude Include="render\mesh\MeshManager.h" />
     <ClInclude Include="render\passes\AvgBrightness.h" />
@@ -176,8 +178,9 @@
     <ClInclude Include="render\texture\stb_image.h" />
     <ClInclude Include="render\texture\TextureManager.h" />
     <ClInclude Include="shaders\shared.h" />
+    <ClInclude Include="timer\Timer.h" />
     <ClInclude Include="units\CameraInputUnit.h" />
-    <ClInclude Include="units\Cubes.h" />
+    <ClInclude Include="units\Lab2.h" />
     <ClInclude Include="units\TestUnit.h" />
     <ClInclude Include="units\UnitBase.h" />
     <ClInclude Include="win\Win.h" />
@@ -187,8 +190,9 @@
     <ClCompile Include="GoodProj.cpp" />
     <ClCompile Include="render\texture\stb_image.cpp" />
     <ClCompile Include="render\texture\TextureManager.cpp" />
+    <ClCompile Include="timer\Timer.cpp" />
     <ClCompile Include="units\CameraInputUnit.cpp" />
-    <ClCompile Include="units\Cubes.cpp" />
+    <ClCompile Include="units\Lab2.cpp" />
     <ClCompile Include="units\TestUnit.cpp" />
     <ClCompile Include="win\Win.cpp" />
   </ItemGroup>

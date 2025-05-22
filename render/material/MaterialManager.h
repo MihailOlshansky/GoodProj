@@ -6,12 +6,16 @@
 enum MaterialTextureType
 {
 	MaterialTextureType_Color = 0,
+	MaterialTextureType_Ambient,
+	MaterialTextureType_Specular,
 
 	MaterialTextureType_COUNT
 };
 
 // ensure order
 static_assert(MaterialTextureType_Color == TEXTURE_COLOR_SRV_SLOT, "texture order Mismatch");
+static_assert(MaterialTextureType_Ambient == TEXTURE_AMBIENT_SRV_SLOT, "texture order Mismatch");
+static_assert(MaterialTextureType_Specular == TEXTURE_SPECULAR_SRV_SLOT, "texture order Mismatch");
 
 class Material {
 private:

@@ -58,8 +58,7 @@ float4 PSMain(VSOut input) : SV_TARGET{
 
 	float keyValue = 1.03 - 2 / (2 + log10(avgBrightness + 1));
 
-	float sceneExposure = 8;
-	float E = keyValue / avgBrightness * sceneExposure;
+	float E = keyValue / avgBrightness * passCB.sceneExposure;
 
 	
 	float3 curr = Uncharted2Tonemap(E * color);

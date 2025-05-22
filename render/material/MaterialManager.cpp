@@ -39,6 +39,8 @@ Material* MaterialManager::addMaterial() {
     Material* material = new Material(render);
 
     material->getData().color = DirectX::XMFLOAT4(1, 0, 1, 1);
+    material->getData().shadeModel = SHADE_MODEL_COLOR;
+
     materialPool.push_back(material);
 
     return material;

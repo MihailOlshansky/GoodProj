@@ -53,6 +53,12 @@
     <Filter Include="Исходные файлы\render\renderTarget">
       <UniqueIdentifier>{5ce7e07e-20e8-4328-a2a9-77812e0e5476}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\timer">
+      <UniqueIdentifier>{766ea09f-d358-441f-ace7-8c101f8f92bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\render\light">
+      <UniqueIdentifier>{387e0342-19c9-4cb6-a578-7df0adf06a97}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="render\Render.h">
@@ -70,7 +76,7 @@
     <ClInclude Include="engine\Engine.h">
       <Filter>Исходные файлы\engine</Filter>
     </ClInclude>
-    <ClInclude Include="units\Cubes.h">
+    <ClInclude Include="units\Lab2.h">
       <Filter>Исходные файлы\units</Filter>
     </ClInclude>
     <ClInclude Include="units\TestUnit.h">
@@ -133,6 +139,12 @@
     <ClInclude Include="units\CameraInputUnit.h">
       <Filter>Исходные файлы\units</Filter>
     </ClInclude>
+    <ClInclude Include="timer\Timer.h">
+      <Filter>Исходные файлы\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="render\light\LightManager.h">
+      <Filter>Исходные файлы\render\light</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GoodProj.cpp">
@@ -147,7 +159,7 @@
     <ClCompile Include="units\TestUnit.cpp">
       <Filter>Исходные файлы\units</Filter>
     </ClCompile>
-    <ClCompile Include="units\Cubes.cpp">
+    <ClCompile Include="units\Lab2.cpp">
       <Filter>Исходные файлы\units</Filter>
     </ClCompile>
     <ClCompile Include="render\Render.cpp">
@@ -194,6 +206,12 @@
     </ClCompile>
     <ClCompile Include="units\CameraInputUnit.cpp">
       <Filter>Исходные файлы\units</Filter>
+    </ClCompile>
+    <ClCompile Include="timer\Timer.cpp">
+      <Filter>Исходные файлы\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="render\light\LightManager.cpp">
+      <Filter>Исходные файлы\render\light</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

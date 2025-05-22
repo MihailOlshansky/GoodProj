@@ -33,6 +33,8 @@ void ColorPass::process() {
 
 	auto meshes = render->getMeshManager()->getMeshes();
 
+	render->getLightManager()->setActive(pixelShader, LIGHTS_CB_SLOT);
+
 	for (auto mesh : meshes) {
 		// set input layout
 		render->getGeometryManager()->setLayout(mesh->getGeometry()->getVertexType());

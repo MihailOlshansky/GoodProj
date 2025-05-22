@@ -31,6 +31,7 @@ void Render::init(size_t w, size_t h) {
     meshManager = new MeshManager(this);
     textureManager = new TextureManager(this);
     renderTargetManager = new RenderTargetManager(this);
+    lightManager = new LightManager(this);
 
     success = success && createBackBuffer();
     if (!success) {
@@ -173,6 +174,7 @@ void Render::EndEvent()
 void Render::doRender() {
     BeginEvent(L"doRender");
     // clear backbuffer and depth buffer
+    lightManager->update();
     backbufferRT->clear({ 0.0f, 0.0f, 0.0f, 1.0f });
     HDRRT->clear({ 0.0f, 0.0f, 0.0f, 1.0f });
     depthBufferDS->clear(1.0f);
@@ -181,6 +183,7 @@ void Render::doRender() {
     
     auto &data = perFrameCB->getData();
     data.viewProj = playerCamera.getVP();
+    data.cameraPos = playerCamera.getPosition();
 
     for (auto& pass : passes) {
         pass->process();
@@ -210,6 +213,8 @@ void Render::resize(size_t w, size_t h) {
     playerCamera.resize(width, height);
 }
 
+float Render::getDTime() { return engine->getTimer()->getDeltaTime(); }
+
 Render::~Render() {
     delete perFrameCB;
 
@@ -217,6 +222,7 @@ Render::~Render() {
         delete pass;
     }
 
+    delete lightManager;
     delete renderTargetManager;
     delete textureManager;
     delete meshManager;

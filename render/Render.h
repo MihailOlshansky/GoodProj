@@ -9,6 +9,7 @@
 #include "mesh/MeshManager.h"
 #include "texture/TextureManager.h"
 #include "renderTarget/RenderTargetManager.h"
+#include "light/LightManager.h"
 
 class Render {
 private:
@@ -20,6 +21,7 @@ private:
 	MeshManager* meshManager = nullptr;
 	TextureManager* textureManager = nullptr;
 	RenderTargetManager* renderTargetManager = nullptr;
+	LightManager* lightManager = nullptr;
 
 	IDXGIFactory* dxgiFactory = nullptr;
 	IDXGIAdapter* dxgiAdapter = nullptr;
@@ -40,6 +42,7 @@ private:
 	Texture* HDRTex = nullptr;
 
 	float curAvgBrightness = 1;
+	float adaptedAvgBrightness = 1;
 
 	std::vector<PassBase*> passes;
 
@@ -66,6 +69,7 @@ public:
 	MeshManager* getMeshManager() { return meshManager; }
 	TextureManager* getTextureManager() { return textureManager; }
 	RenderTargetManager* getRenderTargetManager() { return renderTargetManager; }
+	LightManager* getLightManager() { return lightManager; }
 
 	Texture* getBackBufferTexture() { return backBufferTex; }
 	Texture* getDepthBufferTexture() { return depthBufferTex; }
@@ -77,6 +81,10 @@ public:
 
 	float getCurAvgBrigtness() { return curAvgBrightness; }
 	void setCurAvgBrightness(float val) { curAvgBrightness = val; }
+	float getAdaptedAvgBrigtness() { return adaptedAvgBrightness; }
+	void setAdaptedAvgBrightness(float val) { adaptedAvgBrightness = val; }
+
+	float getDTime();
 
 	ConstantBuffer<PerFrameData>* perFrameCB;
 	~Render();

@@ -11,20 +11,25 @@ void CameraInputUnit::update() {
 	if (input->keys['r'] || input->keys['R']) {
 		camera->reset();
 	}
+
+	double dTime = engine->getTimer()->getDeltaTime();
+	float speedDTime = Speed * dTime;
+	float sencitivityDTime = Sencitivity * dTime;
+
 	DirectX::XMFLOAT3 cameraTranslate = { 0, 0, 0 };
 	float angleUpInDegrees = 0;
 	float angleRightInDegrees = 0;
-	cameraTranslate.z += (input->keys['w'] || input->keys['W']) * Speed;
-	cameraTranslate.z -= (input->keys['s'] || input->keys['S']) * Speed;
-	cameraTranslate.x += (input->keys['d'] || input->keys['D']) * Speed;
-	cameraTranslate.x -= (input->keys['a'] || input->keys['A']) * Speed;
-	cameraTranslate.y += (input->keys['e'] || input->keys['E']) * Speed;
-	cameraTranslate.y -= (input->keys['q'] || input->keys['Q']) * Speed;
+	cameraTranslate.z += (input->keys['w'] || input->keys['W']) * speedDTime;
+	cameraTranslate.z -= (input->keys['s'] || input->keys['S']) * speedDTime;
+	cameraTranslate.x += (input->keys['d'] || input->keys['D']) * speedDTime;
+	cameraTranslate.x -= (input->keys['a'] || input->keys['A']) * speedDTime;
+	cameraTranslate.y += (input->keys['e'] || input->keys['E']) * speedDTime;
+	cameraTranslate.y -= (input->keys['q'] || input->keys['Q']) * speedDTime;
 
 //	cameraTranslate.z += input->Mdz;
 	if (input->keys[VK_RBUTTON]) {
-		angleUpInDegrees = input->Mdx * Sencitivity;
-		angleRightInDegrees = input->Mdy * Sencitivity;
+		angleUpInDegrees = input->Mdx * sencitivityDTime;
+		angleRightInDegrees = input->Mdy * sencitivityDTime;
 	}
 
 	DirectX::XMFLOAT3 dirf = camera->getDirection();

@@ -4,8 +4,8 @@
 
 class CameraInputUnit : public UnitBase {
 private:
-	float Speed = 0.03f;
-	float Sencitivity = 1.0f;
+	float Speed = 3.0f;
+	float Sencitivity = 60.0f;
 
 	Camera* camera = nullptr;
 	Input* input = nullptr;

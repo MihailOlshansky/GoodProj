@@ -17,7 +17,10 @@ void ToneMappingPass::process() {
 	
 	// update CB data
 	auto& cb = tonemapCB->getData();
-	cb.avgBrightnessLog = render->getCurAvgBrigtness();
+	// eye adaptetion
+	cb.avgBrightnessLog = render->getAdaptedAvgBrigtness() + (render->getCurAvgBrigtness() - render->getAdaptedAvgBrigtness()) * (1 - exp(-render->getDTime() / AdaptationSpeed));
+	cb.sceneExposure = 8;
+	render->setAdaptedAvgBrightness(cb.avgBrightnessLog);
 
 	// set target 
 	render->getRenderTargetManager()->reset();
