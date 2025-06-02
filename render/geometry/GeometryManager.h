@@ -41,5 +41,6 @@ public:
 	void setLayout(Geometry::VertexType vertexType);
 	Geometry* addGeometry(VertexDefault* vertices, size_t vertexCount, uint32_t* indices, size_t indexCount, D3D11_PRIMITIVE_TOPOLOGY topology = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	Geometry* addCube();
+	Geometry* addSphere(int n, int m);
 	~GeometryManager();
 };

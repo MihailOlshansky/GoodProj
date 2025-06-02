@@ -1,10 +1,23 @@
-﻿  TextureManager.cpp
+﻿  GoodProj.cpp
 C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-C:\Users\molsh\source\repos\GoodProj\render\texture\TextureManager.cpp(11,81): warning C4267: аргумент: преобразование из "size_t" в "UINT"; возможна потеря данных
-C:\Users\molsh\source\repos\GoodProj\render\texture\TextureManager.cpp(189,19): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab3.h(7,27): warning C4305: инициализация: усечение из "double" в "const float"
+C:\Users\molsh\source\repos\GoodProj\units\Lab3.h(8,27): warning C4305: инициализация: усечение из "double" в "const float"
+  Lab3.cpp
+C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab3.h(7,27): warning C4305: инициализация: усечение из "double" в "const float"
+C:\Users\molsh\source\repos\GoodProj\units\Lab3.h(8,27): warning C4305: инициализация: усечение из "double" в "const float"
+C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(41,43): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(42,43): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(43,43): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(45,44): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(46,44): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(47,44): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(51,30): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(52,30): warning C4244: =: преобразование "double" в "float", возможна потеря данных
   Создание кода
-  4 of 1575 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+  2 of 3762 functions (<0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    9 functions had inline decision re-evaluated but remain unchanged
+    54 functions had inline decision re-evaluated but remain unchanged
   Создание кода завершено
   GoodProj.vcxproj -> C:\Users\molsh\source\repos\GoodProj\x64\Release\GoodProj.exe
+          1 file(s) copied.

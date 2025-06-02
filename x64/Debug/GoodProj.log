@@ -1,10 +1,12 @@
-﻿  Lab2.cpp
+﻿  Lab3.cpp
 C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-C:\Users\molsh\source\repos\GoodProj\units\Lab2.cpp(16,43): warning C4244: =: преобразование "double" в "float", возможна потеря данных
-C:\Users\molsh\source\repos\GoodProj\units\Lab2.cpp(17,43): warning C4244: =: преобразование "double" в "float", возможна потеря данных
-C:\Users\molsh\source\repos\GoodProj\units\Lab2.cpp(18,43): warning C4244: =: преобразование "double" в "float", возможна потеря данных
-C:\Users\molsh\source\repos\GoodProj\units\Lab2.cpp(20,44): warning C4244: =: преобразование "double" в "float", возможна потеря данных
-C:\Users\molsh\source\repos\GoodProj\units\Lab2.cpp(21,44): warning C4244: =: преобразование "double" в "float", возможна потеря данных
-C:\Users\molsh\source\repos\GoodProj\units\Lab2.cpp(22,44): warning C4244: =: преобразование "double" в "float", возможна потеря данных
-C:\Users\molsh\source\repos\GoodProj\units\Lab2.cpp(51,10): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(46,43): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(47,43): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(48,43): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(50,44): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(51,44): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(52,44): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(56,30): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(57,30): warning C4244: =: преобразование "double" в "float", возможна потеря данных
   GoodProj.vcxproj -> C:\Users\molsh\source\repos\GoodProj\x64\Debug\GoodProj.exe
+          1 file(s) copied.

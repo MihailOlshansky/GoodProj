@@ -3,7 +3,7 @@
 
 class ToneMappingPass : public PassBase {
 private:
-	float AdaptationSpeed = 1.0f;
+	float AdaptationSpeed = 1.5f;
 
 	Shader* toneMappingVertexShader;
 	Shader* toneMappingPixelShader;

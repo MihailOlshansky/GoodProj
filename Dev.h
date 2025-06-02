@@ -18,6 +18,9 @@
 // math library
 #include <directxmath.h>
 
+// Dear Imgui library
+#include "imgui/imgui.h"
+
 #define SAFE_RELEASE(a) if (a != NULL) { a->Release(); a = NULL; }
 
 #define STRINGIFY(x) #x

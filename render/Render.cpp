@@ -1,8 +1,11 @@
 #include "engine/Engine.h"
 
+#include "imgui/imgui_impl_dx11.h"
+
 #include "passes/TestTriangle.h"
 #include "passes/TestCube.h"
 #include "passes/ColorPass.h"
+#include "passes/SkyPass.h"
 #include "passes/AvgBrightness.h"
 #include "passes/ToneMapping.h"
 
@@ -65,6 +68,7 @@ void Render::init(size_t w, size_t h) {
     //passes.push_back(new TestTriangle());
     //passes.push_back(new TestCube());
     passes.push_back(new ColorPass());
+    passes.push_back(new SkyPass());
     passes.push_back(new AvgBrightnessPass());
     passes.push_back(new ToneMappingPass());
 
@@ -76,6 +80,17 @@ void Render::init(size_t w, size_t h) {
     perFrameCB = new ConstantBuffer<PerFrameData>(this);
 
     resize(w, h);
+
+    {
+        D3D11_RASTERIZER_DESC desc = {};
+        desc.FillMode = D3D11_FILL_SOLID;
+        desc.CullMode = D3D11_CULL_BACK;
+        desc.DepthClipEnable = TRUE;
+
+        d3dDevice->CreateRasterizerState(&desc, &defaultRasterizerState);
+    }
+
+    ImGui_ImplDX11_Init(d3dDevice, d3dContext);
 }
 
 bool Render::createDXGIFactory()
@@ -187,7 +202,15 @@ void Render::doRender() {
 
     for (auto& pass : passes) {
         pass->process();
+        d3dContext->RSSetState(defaultRasterizerState);
     }
+
+    // imgui render
+    renderTargetManager->reset(); 
+    backbufferRT->setActive();
+    renderTargetManager->apply();
+    ImGui::Render();
+    ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
     d3dSwapChain->Present(0, 0);
     EndEvent();
@@ -216,6 +239,8 @@ void Render::resize(size_t w, size_t h) {
 float Render::getDTime() { return engine->getTimer()->getDeltaTime(); }
 
 Render::~Render() {
+    ImGui_ImplDX11_Shutdown();
+
     delete perFrameCB;
 
     for (auto& pass : passes) {
@@ -230,6 +255,7 @@ Render::~Render() {
     delete geometryManager;
     delete shaderManager;
     delete backBufferTex;
+    SAFE_RELEASE(defaultRasterizerState);
     SAFE_RELEASE(d3dSwapChain);
     SAFE_RELEASE(d3dAnnotation);
     SAFE_RELEASE(d3dContext);

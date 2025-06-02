@@ -4,7 +4,7 @@
 class Camera
 {
 private:
-	float fov = 90.0f;
+	float fov = 60.0f;
 	size_t height = 1;
 	size_t width = 1;
 	float nearPlane = 0.1f;

@@ -1,4 +1,6 @@
 #include "engine/Engine.h"
+#include "imgui/imgui_impl_dx11.h"
+#include "imgui/imgui_impl_win32.h"
 
 void UnitBase::setEngine(Engine* eng) {
 	engine = eng;
@@ -18,6 +20,17 @@ void Engine::addUnit(UnitBase* unit) {
 }
 
 void Engine::init(HINSTANCE hInstance) {
+	// Setup Dear ImGui context
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+
+	 // Setup Dear ImGui style
+	ImGui::StyleColorsDark();
+	//ImGui::StyleColorsLight();
+
 	win->init(hInstance);
 	// on every WM_PAINT message call Engine::frame method
 	win->setCallback(WM_PAINT, [this](HWND hWnd, UINT msgCode, WPARAM wParam, LPARAM lParam) {
@@ -47,6 +60,11 @@ void Engine::frame() {
 	timer->update();
 	input->update();
 
+	// Start the Dear ImGui frame
+	ImGui_ImplDX11_NewFrame();
+	ImGui_ImplWin32_NewFrame();
+	ImGui::NewFrame();
+
 	for (auto unit : units) {
 		unit->update();
 	}
@@ -68,4 +86,5 @@ Engine::~Engine() {
 	delete input;
 	delete timer;
 	delete win;
+	ImGui::DestroyContext();
 }

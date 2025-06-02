@@ -29,6 +29,7 @@ private:
 	ID3D11DeviceContext* d3dContext = nullptr;
 	ID3DUserDefinedAnnotation* d3dAnnotation = nullptr;
 	IDXGISwapChain* d3dSwapChain = nullptr;
+	ID3D11RasterizerState* defaultRasterizerState = nullptr;
 
 	size_t width = 0;
 	size_t height = 0;
@@ -40,6 +41,8 @@ private:
 
 	RenderTarget* HDRRT = nullptr;
 	Texture* HDRTex = nullptr;
+
+	CubeTexture* sky = nullptr;
 
 	float curAvgBrightness = 1;
 	float adaptedAvgBrightness = 1;
@@ -78,11 +81,13 @@ public:
 	RenderTarget* getBackBufferTarget() { return backbufferRT; }
 	RenderTarget* getHDRTarget() { return HDRRT; }
 	DepthStencil* getDepthBufferTarget() { return depthBufferDS; }
+	CubeTexture* getSky() { return sky; }
 
 	float getCurAvgBrigtness() { return curAvgBrightness; }
 	void setCurAvgBrightness(float val) { curAvgBrightness = val; }
 	float getAdaptedAvgBrigtness() { return adaptedAvgBrightness; }
 	void setAdaptedAvgBrightness(float val) { adaptedAvgBrightness = val; }
+	void setSky(CubeTexture* tex) { sky = tex; }
 
 	float getDTime();
 

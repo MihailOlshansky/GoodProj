@@ -136,6 +136,48 @@ Geometry* GeometryManager::addCube() {
     return addGeometry(vertices, 24, indices, 36);
 }
 
+Geometry* GeometryManager::addSphere(int n, int m) {
+    std::vector<VertexDefault> vertices;
+    std::vector<uint32_t> indices;
+
+    vertices.reserve(n * m);
+    vertices.reserve(2 * 3 * (n - 1) * (m - 1));
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            float theta = i * M_PI / (n - 1) - M_PI / 2.0f;
+            float phi = j * 2 * M_PI / (m - 1);
+
+            VertexDefault vert;
+            vert.position.x = sinf(phi) * cosf(theta);
+            vert.position.y = sinf(theta);
+            vert.position.z = cosf(phi) * cosf(theta);
+
+            vert.normal = vert.position;
+
+            vert.position.x *= 0.5f;
+            vert.position.y *= 0.5f;
+            vert.position.z *= 0.5f;
+
+            vert.uv.x = 1.0f - 1.0 * j / (m - 1);
+            vert.uv.y = 1.0f - 1.0 * i / (n - 1);
+            vertices.push_back(vert);
+
+            if (i == n - 1) continue;
+
+            indices.push_back(i * m + j);
+            indices.push_back(i * m + (j + 1) % m);
+            indices.push_back((i + 1) * m + j);
+
+            indices.push_back((i + 1) * m + j);
+            indices.push_back(i * m + (j + 1) % m);
+            indices.push_back((i + 1) * m + (j + 1) % m);
+        }
+    }
+
+    return addGeometry(vertices.data(), vertices.size(), indices.data(), indices.size());
+}
+
 GeometryManager::~GeometryManager() {
 
     for (size_t i = 0; i < Geometry::VertexType_Count; i++)

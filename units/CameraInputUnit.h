@@ -4,12 +4,12 @@
 
 class CameraInputUnit : public UnitBase {
 private:
-	float Speed = 3.0f;
-	float Sencitivity = 60.0f;
-
 	Camera* camera = nullptr;
 	Input* input = nullptr;
 public:
+	float Speed = 10.0f;
+	float Sencitivity = 60.0f;
+
 	CameraInputUnit();
 	virtual void init() override;
 	virtual void update() override;

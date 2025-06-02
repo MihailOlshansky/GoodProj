@@ -45,10 +45,17 @@ using uint4 = DirectX::XMUINT4;
 
 #define SHADE_MODEL_COLOR 0
 #define SHADE_MODEL_PHONG 1
-#define SHADE_MODEL_PBR 2
+#define SHADE_MODEL_NDF 2
+#define SHADE_MODEL_GF 3
+#define SHADE_MODEL_FF 4
+#define SHADE_MODEL_PBR 5
+
 #ifdef __cplusplus
 #pragma pack(push, 1)
 #endif
+
+#define M_PI       3.14159265358979323846   // pi
+
 struct TriangleData
 {
 	float3 color1;
@@ -68,7 +75,9 @@ struct PerMaterialData
 	float3 diffuse;
 	uint shadeModel;
 	float3 specular;
-	float _padding1;
+	float metalness;
+	float roughness;
+	float3 reflection;
 };
 
 struct PerFrameData

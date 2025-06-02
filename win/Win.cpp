@@ -1,4 +1,5 @@
 #include "engine/Engine.h"
+#include "imgui/imgui_impl_win32.h"
 
 Win::Win(Engine *eng): engine(eng) {}
 
@@ -50,8 +51,13 @@ bool Win::init(HINSTANCE hInst)
 
     ShowWindow(hWnd, SW_SHOWNORMAL);
     UpdateWindow(hWnd);
+
+    ImGui_ImplWin32_Init(hWnd);
     return true;
 }
+
+// Forward declare message handler from imgui_impl_win32.cpp
+extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 LRESULT CALLBACK Win::WndProc(HWND hWnd, UINT msgCode, WPARAM wParam, LPARAM lParam)
 {
@@ -67,6 +73,9 @@ LRESULT CALLBACK Win::WndProc(HWND hWnd, UINT msgCode, WPARAM wParam, LPARAM lPa
     if (win == nullptr) {
         return DefWindowProc(hWnd, msgCode, wParam, lParam);
     }
+
+    if (ImGui_ImplWin32_WndProcHandler(hWnd, msgCode, wParam, lParam))
+        return true;
 
     switch (msgCode)
     {
@@ -121,5 +130,5 @@ void Win::setCallback(UINT msg, WindowMsgCallback callback) {
 
 Win::~Win()
 {
-
+    ImGui_ImplWin32_Shutdown();
 }
