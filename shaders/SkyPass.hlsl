@@ -6,7 +6,7 @@ cbuffer PerFrame : register(PER_FRAME_CB_SLOT)
 	PerFrameData frameData;
 }
 
-TextureCube TextureSky : register(TEXTURE_COLOR_SRV_SLOT);
+TextureCube TextureSky : register(TEXTURE_IRRADIANCE_SRV_SLOT);
 
 SamplerState LinearSampler : register(LINEAR_SAMPLER_SLOT);
 SamplerState NearestSampler : register(NEAREST_SAMPLER_SLOT);

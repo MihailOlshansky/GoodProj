@@ -40,6 +40,7 @@ Material* MaterialManager::addMaterial() {
 
     material->getData().color = DirectX::XMFLOAT4(1, 0, 1, 1);
     material->getData().shadeModel = SHADE_MODEL_COLOR;
+    material->getData().irradianceMapMode = IRRADIANCE_MAP_DEFAULT;
 
     materialPool.push_back(material);
 

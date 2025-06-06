@@ -36,7 +36,7 @@ public:
 	}
 
 	void reset() {
-		fov = 90.0f;
+		fov = 60.0f;
 		nearPlane = 0.1f;
 		farPlane = 1000.0f;
 

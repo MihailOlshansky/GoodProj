@@ -37,6 +37,8 @@ using uint4 = DirectX::XMUINT4;
 #define TEXTURE_AMBIENT_SRV_SLOT SHADER_SRV_SLOT(1)
 #define TEXTURE_SPECULAR_SRV_SLOT SHADER_SRV_SLOT(2)
 
+#define TEXTURE_IRRADIANCE_SRV_SLOT SHADER_SRV_SLOT(3)
+
 #define LINEAR_SAMPLER_SLOT SHADER_SAMPLER_SLOT(0)
 #define NEAREST_SAMPLER_SLOT SHADER_SAMPLER_SLOT(1)
 
@@ -49,6 +51,11 @@ using uint4 = DirectX::XMUINT4;
 #define SHADE_MODEL_GF 3
 #define SHADE_MODEL_FF 4
 #define SHADE_MODEL_PBR 5
+
+#define IRRADIANCE_MAP_DEFAULT 0
+#define IRRADIANCE_MAP_DIFFUSION 1
+#define IRRADIANCE_MAP_SPECULAR 2
+#define IRRADIANCE_MAP_DIFF_SPEC 3
 
 #ifdef __cplusplus
 #pragma pack(push, 1)
@@ -74,10 +81,11 @@ struct PerMaterialData
 	float ph;
 	float3 diffuse;
 	uint shadeModel;
+	uint irradianceMapMode;
 	float3 specular;
 	float metalness;
 	float roughness;
-	float3 reflection;
+	float2 _padding;
 };
 
 struct PerFrameData

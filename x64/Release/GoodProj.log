@@ -1,23 +1,116 @@
 ﻿  GoodProj.cpp
 C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-C:\Users\molsh\source\repos\GoodProj\units\Lab3.h(7,27): warning C4305: инициализация: усечение из "double" в "const float"
-C:\Users\molsh\source\repos\GoodProj\units\Lab3.h(8,27): warning C4305: инициализация: усечение из "double" в "const float"
+  Engine.cpp
+C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+  Input.cpp
+C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+  Render.cpp
+C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\Render.cpp(147,43): warning C4267: =: преобразование из "size_t" в "UINT"; возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\Render.cpp(148,45): warning C4267: =: преобразование из "size_t" в "UINT"; возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\Render.cpp(225,80): warning C4267: аргумент: преобразование из "size_t" в "UINT"; возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\Render.cpp(239,67): warning C4244: return: преобразование "double" в "float", возможна потеря данных
+  GeometryManager.cpp
+C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\geometry\GeometryManager.cpp(54,61): warning C4267: =: преобразование из "size_t" в "UINT"; возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\geometry\GeometryManager.cpp(63,63): warning C4267: =: преобразование из "size_t" в "UINT"; возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\geometry\GeometryManager.cpp(72,55): warning C4267: =: преобразование из "size_t" в "UINT"; возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\geometry\GeometryManager.cpp(81,57): warning C4267: =: преобразование из "size_t" в "UINT"; возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\geometry\GeometryManager.cpp(148,25): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\geometry\GeometryManager.cpp(149,23): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\geometry\GeometryManager.cpp(162,30): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\geometry\GeometryManager.cpp(163,30): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+  LightManager.cpp
+C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\light\LightManager.cpp(46,60): warning C4267: =: преобразование из "size_t" в "uint"; возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\light\LightManager.cpp(55,63): warning C4267: =: преобразование из "size_t" в "uint"; возможна потеря данных
+  MaterialManager.cpp
+C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+  MeshManager.cpp
+C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+  AvgBrightness.cpp
+C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\passes\AvgBrightness.cpp(47,21): warning C4244: инициализация: преобразование "double" в "uint32_t", возможна потеря данных
+  ColorPass.cpp
+C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\passes\ColorPass.cpp(50,88): warning C4267: аргумент: преобразование из "size_t" в "UINT"; возможна потеря данных
+  SkyPass.cpp
+C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\passes\SkyPass.cpp(59,76): warning C4267: аргумент: преобразование из "size_t" в "UINT"; возможна потеря данных
+  TestCube.cpp
+C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\passes\TestCube.cpp(21,77): warning C4305: аргумент: усечение из "double" в "float"
+C:\Users\molsh\source\repos\GoodProj\render\passes\TestCube.cpp(38,80): warning C4267: аргумент: преобразование из "size_t" в "UINT"; возможна потеря данных
+  TestTriangle.cpp
+C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+  ToneMapping.cpp
+C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\passes\ToneMapping.cpp(21,57): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+  RenderTargetManager.cpp
+C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\renderTarget\RenderTargetManager.cpp(79,160): warning C4267: аргумент: преобразование из "size_t" в "UINT"; возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\renderTarget\RenderTargetManager.cpp(80,173): warning C4267: аргумент: преобразование из "size_t" в "UINT"; возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\renderTarget\RenderTargetManager.cpp(87,65): warning C4244: =: преобразование "int" в "FLOAT", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\renderTarget\RenderTargetManager.cpp(88,63): warning C4244: =: преобразование "int" в "FLOAT", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\renderTarget\RenderTargetManager.cpp(102,160): warning C4267: аргумент: преобразование из "size_t" в "UINT"; возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\renderTarget\RenderTargetManager.cpp(103,173): warning C4267: аргумент: преобразование из "size_t" в "UINT"; возможна потеря данных
+  ShaderManager.cpp
+C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\shaderManager\ShaderManager.cpp(141,95): warning C4267: аргумент: преобразование из "size_t" в "UINT"; возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\shaderManager\ShaderManager.cpp(145,94): warning C4267: аргумент: преобразование из "size_t" в "UINT"; возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\shaderManager\ShaderManager.cpp(193,154): warning C4267: аргумент: преобразование из "size_t" в "UINT"; возможна потеря данных
+  TextureManager.cpp
+C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\texture\TextureManager.cpp(11,81): warning C4267: аргумент: преобразование из "size_t" в "UINT"; возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\texture\TextureManager.cpp(34,81): warning C4267: аргумент: преобразование из "size_t" в "UINT"; возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\render\texture\TextureManager.cpp(299,19): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+  Timer.cpp
+C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+  CameraInputUnit.cpp
+C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\CameraInputUnit.cpp(16,19): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\CameraInputUnit.cpp(17,25): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+  Lab2.cpp
+C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab2.cpp(16,43): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab2.cpp(17,43): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab2.cpp(18,43): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab2.cpp(20,44): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab2.cpp(21,44): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab2.cpp(22,44): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab2.cpp(51,10): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+  Компиляция...
   Lab3.cpp
 C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-C:\Users\molsh\source\repos\GoodProj\units\Lab3.h(7,27): warning C4305: инициализация: усечение из "double" в "const float"
-C:\Users\molsh\source\repos\GoodProj\units\Lab3.h(8,27): warning C4305: инициализация: усечение из "double" в "const float"
-C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(41,43): warning C4244: =: преобразование "double" в "float", возможна потеря данных
-C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(42,43): warning C4244: =: преобразование "double" в "float", возможна потеря данных
-C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(43,43): warning C4244: =: преобразование "double" в "float", возможна потеря данных
-C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(45,44): warning C4244: =: преобразование "double" в "float", возможна потеря данных
-C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(46,44): warning C4244: =: преобразование "double" в "float", возможна потеря данных
-C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(47,44): warning C4244: =: преобразование "double" в "float", возможна потеря данных
-C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(51,30): warning C4244: =: преобразование "double" в "float", возможна потеря данных
-C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(52,30): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(47,43): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(48,43): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(49,43): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(51,44): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(52,44): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(53,44): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(57,30): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab3.cpp(58,30): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+  Lab4.cpp
+C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab4.cpp(54,43): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab4.cpp(55,43): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab4.cpp(56,43): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab4.cpp(58,44): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab4.cpp(59,44): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab4.cpp(60,44): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab4.cpp(64,30): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\Lab4.cpp(65,30): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+  Sky.cpp
+C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+  TestUnit.cpp
+C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+C:\Users\molsh\source\repos\GoodProj\units\TestUnit.cpp(14,10): warning C4477: "printf": в строке форматирования "%s" требуется аргумент типа "char *", но вариативный аргумент "1" имеет тип "std::wstring"
+  Win.cpp
+C:\Users\molsh\source\repos\GoodProj\render\camera\Camera.h(129,45): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
   Создание кода
-  2 of 3762 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+  2 of 3767 functions (<0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    54 functions had inline decision re-evaluated but remain unchanged
+    55 functions had inline decision re-evaluated but remain unchanged
   Создание кода завершено
   GoodProj.vcxproj -> C:\Users\molsh\source\repos\GoodProj\x64\Release\GoodProj.exe
           1 file(s) copied.

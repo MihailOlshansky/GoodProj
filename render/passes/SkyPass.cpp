@@ -48,7 +48,7 @@ void SkyPass::process() {
 	render->perFrameCB->setActive(skyPassPixelShader, PER_FRAME_CB_SLOT);
 
 	// set prev tex
-	render->getSky()->setActive(skyPassPixelShader, TEXTURE_COLOR_SRV_SLOT);
+	render->getSky()->setActive(skyPassPixelShader, TEXTURE_IRRADIANCE_SRV_SLOT);
 
 	// set input layout
 	render->getGeometryManager()->setLayout(geometry->getVertexType());

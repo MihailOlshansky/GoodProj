@@ -22,6 +22,7 @@ cbuffer Lights : register(LIGHTS_CB_SLOT) {
 Texture2D TextureColor : register(TEXTURE_COLOR_SRV_SLOT);
 Texture2D TextureAmbient : register(TEXTURE_AMBIENT_SRV_SLOT);
 Texture2D TextureSpecular : register(TEXTURE_SPECULAR_SRV_SLOT);
+TextureCube TextureSky : register(TEXTURE_IRRADIANCE_SRV_SLOT);
 
 
 SamplerState LinearSampler : register(LINEAR_SAMPLER_SLOT);
@@ -43,6 +44,8 @@ VSOut VSMain(VSDefaultIn input) {
 	return res;
 }
 
+
+// shade models
 float3 Phong(float3 l, float3 lc, float3 n, float3 pos, float3 v, float3 Ka, float3 Kd, float3 Ks) {
 	float3 res = lc * Ka;
 	float nl = max(0, dot(n, -l));
@@ -107,15 +110,16 @@ float4 CountNDFColor(VSOut input, float3 v) {
 
 float3 CountFresnelFunc(VSOut input, float3 v, float3 l) {
 	float3 h = normalize(v + l);
-	float3 f0 = float3(0.04f, 0.04f, 0.04f) * (1 - materialData.metalness) + materialData.reflection * materialData.metalness;
-	return f0 + (1 - f0) * pow(1 - dot(h, v), 5);
+	float3 mF0 = TextureColor.Sample(LinearSampler, input.texCoord);
+	float3 f0 = lerp(float3(0.04f, 0.04f, 0.04f), mF0, materialData.metalness);
+	return (f0 + (float3(1.0, 1.0, 1.0) - f0) * pow(1 - max(dot(h, v), 0.0), 5));
 }
 
 float4 CountFFColor(VSOut input, float3 v) {
 	float4 result = float4(0, 0, 0, 1);
 	for (int i = 0; i < lightsData.pointAmount; i++) {
 		float3 l = normalize(lightsData.pointLights[i].position - input.worldPos);
-		result.xyz += dot(input.normal, l) < 0 ? float3(0, 0, 0) : CountFresnelFunc(input, v, l);
+		result.xyz += dot(input.normal, l) < -0.01 ? float3(0, 0, 0) : CountFresnelFunc(input, v, l);
 	}
 	return result;
 }
@@ -161,6 +165,34 @@ float4 CountPBRColor(VSOut input, float3 v) {
 	return result;
 }
 
+
+// irradiance map model
+float3 FresnelSchlickRoughnessFunction(VSOut input, float3 v) {
+	float3 mF0 = TextureColor.Sample(LinearSampler, input.texCoord);
+	float3 f0 = lerp(float3(0.04f, 0.04f, 0.04f), mF0, materialData.metalness);
+	float roughness = materialData.roughness;
+
+	return f0 + max(float3(1.0 - roughness, 1.0 - roughness, 1.0 - roughness) - f0, 0.0) * pow(1 - max(dot(input.normal, v), 0.0), 5);
+}
+
+float4 CountPBRWithIrradianceDiffusion(VSOut input, float3 v) {
+	float4 color = float4(100, 0, 100, 1);
+	return color;
+}
+
+float4 CountPBRWithIrradianceSpecular(VSOut input, float3 v) {
+	// not implemented
+	float4 color = float4(100, 0, 100, 1);
+	return color;
+}
+
+float4 CountPBRWithIrradianceDiffusionAndSpecular(VSOut input, float3 v) {
+	// not implemented
+	float4 color = float4(100, 0, 100, 1);
+	return color;
+}
+
+
 float4 PSMain(VSOut input) : SV_TARGET{
 	input.normal = normalize(input.normal);
 	float3 view = normalize(frameData.cameraPos - input.worldPos);
@@ -202,6 +234,32 @@ float4 PSMain(VSOut input) : SV_TARGET{
 		default:
 		{
 			color = float4(1, 0, 1, 1);
+			break;
+		}
+	}
+
+	switch (materialData.irradianceMapMode) {
+		case IRRADIANCE_MAP_DEFAULT:
+		{
+			break;
+		}
+		case IRRADIANCE_MAP_DIFFUSION:
+		{
+			color += CountPBRWithIrradianceDiffusion(input, view);
+			break;
+		}
+		case IRRADIANCE_MAP_SPECULAR:
+		{
+			color += CountPBRWithIrradianceSpecular(input, view);
+			break;
+		}
+		case IRRADIANCE_MAP_DIFF_SPEC:
+		{
+			color += CountPBRWithIrradianceDiffusionAndSpecular(input, view);
+			break;
+		}
+		default:
+		{
 			break;
 		}
 	}

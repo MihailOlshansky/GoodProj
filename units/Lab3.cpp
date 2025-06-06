@@ -10,15 +10,16 @@ const char* Lab3::imguiShadeModels[] = {
 };
 
 const char* Lab3::textureFilePaths[] = {
-
 	"bin/textures/GoodTexture.jpg",
 	"bin/textures/BlackTexture.png",
+	"bin/textures/OrangeTexture.jpg",
 	"bin/textures/DoomTexture.jpg"
 };
 
 const char* Lab3::textureNames[] = {
 	"GoodTexture",
 	"BlackTexture",
+	"OrangeTexture",
 	"DoomTexture"
 };
 
@@ -29,7 +30,7 @@ Lab3::Lab3() {
 void Lab3::init()
 {
 	selectedShadeModel = 5;
-	selectedTexture = 1;
+	selectedTexture = 2;
 
 	texture = engine->getRender()->getTextureManager()->loadTexture(textureFilePaths[selectedTexture], true, true);
 
@@ -56,10 +57,6 @@ void Lab3::init()
 		mat->getData().metalness = min(1.0 * (i / H) * (maxMetalness - minMetalness) / (W - 1) + minMetalness, maxMetalness);
 		mat->getData().roughness = min(1.0 * (i % W) * (maxRoughness - minRoughness) / (H - 1) + minRoughness, maxRoughness);;
 	
-		mat->getData().reflection.x = mat->getData().metalness;
-		mat->getData().reflection.y = mat->getData().metalness;
-		mat->getData().reflection.z = mat->getData().metalness;
-
 		mat->setTexture(texture, MaterialTextureType_Color);
 		materials.push_back(mat);
 	}
